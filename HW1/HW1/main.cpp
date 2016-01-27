@@ -116,7 +116,7 @@ double milstein(double spot, double strike, double r, double expiry, double vol,
 		double b = vol*iterateSpot;
 		for (int i = 1; i <= steps; i++) {
 			double dW = sqrt(dt) * GetOneGaussianByBoxMuller();
-			double dS = a*dt + b*dW + 0.5*b*vol*(pow(dW, 2) - dt);
+			double dS = iterateSpot*((r - yield)*dt + vol*dW + 0.5*vol*vol*(dW*dW - dt));
 			iterateSpot = iterateSpot + dS;
 		}
 
